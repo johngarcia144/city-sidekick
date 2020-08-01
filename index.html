@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+
+
+testArray = [];
+//this ajax query will need to take in a restaurant/hotel, the users location(lat and long) and a slider for radius
+search = "restaurants" //example search input to test
+geoLocation = "39.739235,-104.990250,5000" //example geo location for denver to test with a radius of 500...not sure of the measurement...
+bingKey = "AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ"
+const queryURL = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=" + search + "&userCircularMapView=" + geoLocation + "&key=" + bingKey
+$.ajax({
+    url: queryURL,
+    method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        for (var i=0; i < 10; i++) {
+        restaurantsObject = response.resourceSets[0].resources[i].name//this will display 10 restaurants
+        console.log(restaurantsObject);
+        testArray.push(JSON.stringify(restaurantsObject));//this will push each restaurant into an array so that we can display them
+        console.log(testArray);
+        };
+    });
+
+
+    
+    
+    
+</script>
+
+
+
+
+     
+</body>
+</html>
+
+
+
+
+
+ 
