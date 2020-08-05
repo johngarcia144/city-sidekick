@@ -7,32 +7,81 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
     <nav class="nav-extended #4a148c purple darken-4">
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo"><i class="material-icons">emoji_transportation</i>Travel App</a>
-         <!-- Drop down menu for Point of Views -->
-                <ul class="right hide-on-med-and-down" id="nav-mobile">
-                    <li><a class="dropdown-trigger" href="#!" data-activates="dropdown1">Point of Views<i class="material-icons right">arrow_drop_down</i></a></li>
-                </ul> 
-                
+            <a href="#!" class="brand-logo"><i class="material-icons">emoji_transportation</i>Travel App</a>
+          <ul class="right ">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Point of Views<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
         </div>
-        <div class="row">
-            <div class="col s8">
+        <div class="row formRow">
+            <div class="input-field col s4">
 
                 <form>
-                    <div class="col s12">
-                      <label class="label-icon" for="search"><i class="material-icons" id="searchIcon">search</i></label>
-                      <input class="autocomplete" id="search" type="search" placeholder="Enter Your Travel City Please">
-                      <i class="material-icons">close</i>
+                    <div class="input-field col s9">
+                      <input class="autocomplete" id="input-city" type="search" placeholder="Click here to enter your city"><i class="material-icons">close</i>
+                      <button id= "search-button" class="btn btn-primary" type="button" id="button-addon2">Click Search</button>
                     </div>
                 </form>
             </div>
+            <!-- Most recent search pulled from Firebase -->
+            <div class="recentSearches col s9">
+            </div>
         </div>
       </nav>
-      
-    <script type="text/javascript" src="script.js"></script>
+    
+     <!-- dropdown menu for hotels and restaurants -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li class="list"><a href="#!" id="restaurants">Hotels</a></li>
+        <li class="divider"></li>
+        <li class="list"><a href="#!" id="hotels">Restaurants</a></li>
+    </ul>
+    <!-- Weather parameters for serach location -->
+    <div class="row">
+        <div class="col s12 weather" id= "currentCityWeather">
+        </div>
+    </div>
+    <!-- Cards for search hotels & restaurants information and geolocation -->
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue darken-2">
+                <div class="card-content white-text">
+                    <span class="card-title titleInfo">Info about hotels and restaurants here</span>
+                    <div class="info">
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card blue darken-2">
+                <div class="card-content white-text">
+                    <span class="card-title mapLocation">Map info here</span>
+                </div>
+                <div id="map">
+                </div>    
+            </div>
+        </div>
+    </div>
+    <!-- Footer with author information -->
+    <nav class="nav-wrapper green lighten-1 footWrapper">
+        <div class="left">©copyright 2020 </div>
+         <ul class="links right contributors">
+            <li><a class="white-text" href="#!">Mety,</a></li>
+            <li><a class="white-text" href="#!">Ben,</a></li>
+            <li><a class="white-text" href="#!">John,</a></li>
+            <li><a class="white-text" href="#!">Raufun</a></li>
+        </ul>
+    </nav>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
