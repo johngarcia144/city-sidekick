@@ -6,27 +6,106 @@
     <title>Document</title>
 </head>
 <body onload="GetMap();">
+    <input id='searchTbx' type='text'/>
+    <input type='button'value='Search' onclick='Search()'/>
+    <br/>
     <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
-    <div class="list">
-        
-    </div>
+    <div id='output' style="margin-left:10px;"></div>
+    <br>
+    <div class="list"></div>
+    <br>
+    <div class="coordinates"></div>
 
 
-
+<script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
 <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ' async defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+var map, searchManager;
+
 function GetMap() {
-    var map = new Microsoft.Maps.Map('#myMap');
-   }
+    map = new Microsoft.Maps.Map('#myMap', {
+        credentials: 'AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ'
+    });
+}
+
+function Search() {
+    if (!searchManager) {
+        //Create an instance of the search manager and perform the search.
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+            searchManager = new Microsoft.Maps.Search.SearchManager(map);
+            Search()
+        });
+    } else {
+        //Remove any previous results from the map.
+        map.entities.clear();
+
+        //Get the users query and geocode it.
+        var query = document.getElementById('searchTbx').value;
+        geocodeQuery(query);
+    }
+}
+
+function geocodeQuery(query) {
+    var searchRequest = {
+        where: query,
+        callback: function (r) {
+            if (r && r.results && r.results.length > 0) {
+                var pin, pins = [], locs = [], output = 'Results:<br/>';
+
+                for (var i = 0; i < r.results.length; i++) {
+                    //Create a pushpin for each result. 
+                    pin = new Microsoft.Maps.Pushpin(r.results[i].location, {
+                        text: i + ''
+                    });
+                    pins.push(pin);
+                    locs.push(r.results[i].location);
+
+                    output += i + ') ' + r.results[i].name + '<br/>';
+                }
+
+                //Add the pins to the map
+                map.entities.push(pins);
+
+                //Display list of results
+                document.getElementById('output').innerHTML = output;
+
+                //Determine a bounding box to best view the results.
+                var bounds;
+
+                if (r.results.length == 1) {
+                    bounds = r.results[0].bestView;
+                } else {
+                    //Use the locations from the results to calculate a bounding box.
+                    bounds = Microsoft.Maps.LocationRect.fromLocations(locs);
+                }
+
+                map.setView({ bounds: bounds });
+            }
+        },
+        errorCallback: function (e) {
+            //If there is an error, alert the user about it.
+            alert("No results found.");
+        }
+    };
+
+    //Make the geocode request.
+    searchManager.geocode(searchRequest);
+}
+
+
+
+
+
+
 
 
 testArray = [];
 //this ajax query will need to take in a restaurant/hotel, the users location(lat and long) and a slider for radius
-search = "hotel" //example search input to test
+search = "breweries" //example search input to test, will need to attach the dropdown menu to this
 geoLocation = "39.739235,-104.990250,5000" //example geo location for denver to test with a radius of 500...not sure of the measurement...
 bingKey = "AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ"
-const queryURL = "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=" + search + "&userCircularMapView=" + geoLocation + "&key=" + bingKey
+const queryURL = "https://dev.virtualearth.net/REST/v1/LocalSearch/?query=" + search + "&userCircularMapView=" + geoLocation + "&key=" + bingKey
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -40,6 +119,20 @@ $.ajax({
         $('.list').append(`<li id=${i}>${restaurantsObject}`);
         };
     });
+//this url link will take an address using zipcode/city/street and show the coordinates
+const queryURL2 = "http://dev.virtualearth.net/REST/v1/Locations/US/{adminDistrict}/80224/Denver/1200SOneidaSt?&maxResults=1&key=AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ"
+$.ajax({
+    url: queryURL2,
+    method: "GET"
+    }).then(function(response) {
+    console.log("Hello");
+    console.log(response);
+    coordinates = response.resourceSets[0].resources[0].geocodePoints[0].coordinates;
+    console.log(coordinates);
+    $('.coordinates').append("<ul>").text(coordinates);
+    });
+
+
 
 
 
