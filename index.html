@@ -1,114 +1,90 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-      <!--Let browser know website is optimized for mobile-->
-     <!--<script defer src="https://use.fontawesome.com/release/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyL1Ad4snFpC1/snyUjRrbdJsw1pGI1"
-     crossorigin="anonymous"></script>-->
-      <link rel="stylesheet" href="style.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Travel App</title>
-    </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Application</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
 
-    <body id="home" class="scrollspy">
-        
-       <div class="nav-fixed">
-         <nav class="purple">
-         <div class="container">
-           <div class="nav-wrapper">
-             <a href="#" class="brand-logo">TravelApp</a>
-             <ul class="right hide-on-med-and-down">
-               <li>
-                 <a href="#hotel">Hotels</a>
-                 </li>
-                 <li>
-                   <a href="#Restaurants">Restaurant</a>
-                 </li>
-             </ul>
-           </div>
-         </div>
+</head>
+<body>
+    <nav class="nav-extended #4a148c purple darken-4">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo"><i class="material-icons">emoji_transportation</i>Travel App</a>
+          <ul class="right ">
+            <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Point of Views<i class="material-icons right">arrow_drop_down</i></a></li>
+          </ul>
+        </div>
+        <div class="row form-Row">
+            <div class="input-field col s4">
 
-       </div>
-     
-       <!--section: ssearch-->
-     <section id="search" class="section section-search purple darken-1 white-text center scrollspy">
-  <div class="container">
-      <div class="row">
-          <div class="col s12">
-          <h3>Enter the city here</h3>
-          <div class="input-field">
-           <input type="text" class="white grey-text autocomplete" id="autocomplete-input" placeholder="Denver,Aurora,henderson etc..."></div>
-          </div>
-      </div>
-    </div>
-  </div>
-     </section>
-     <!--section:icons-->
-     <section class="section section-icons grey lighten-4 center">
-         <div class="container">
-             <div class="row">
-                 <div class="col s12 m4"></div>
-                 <div class="card-panel">
-                     <i class="material-icons large purple-text">room</i>
-                     <h4> Click here</h4>
-                     <p>If you wana go to Restaurants</p>
-                 </div>
-             </div>
-             <div class="col s12 m4"></div>
-                 <div class="card-panel">
-                     <i class="material-icons large purple-text">room</i>
-                     <h4>Click here</h4>
-                     <p>If you wana go to hotels</p>
-                 </div>
-                 </div>
-            
-         </div>
-     </section>
-     <!--section:images-->
-      <section id="popular" class="section section-images scrollspy">
-          <div class="container">
-              <div class="row">
-                  <div class="col s12 m4">
-                      <div class="card">
-                          <div class="card-image">
-                              <img src="images.jpg\picture1.jpg" alt="">
-                          </div>
-                      </div>
-                  </div>
-                  <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="images.jpg\picture2.jpg" alt="">
-                            </div>
-                        </div>
+                <form>
+                    <div class="input-field col s9">
+                      <input class="autocomplete" id="input-city" type="search" placeholder="enter your city"><i class="material-icons">close</i>
+                      <button id= "search-button" class="btn btn-primary" type="button" id="button-addon2"> Search</button>
                     </div>
-              </div>
-              
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="images.jpg\picture3.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="images.jpg\picture3.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>     
-          </div>
-          
-      </section>
-      <!--JavaScript at end of body for optimized loading-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+                </form>
+            </div>
+            <!-- Most recent search pulled from Firebase -->
+            <div class="recentSearches col s9">
+            </div>
+        </div>
+      </nav>
     
-        
-    </body>
-  </html>
+     <!-- dropdown menu for hotels and restaurants -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li class="list"><a href="#!" id="restaurants">Hotels</a></li>
+        <li class="divider"></li>
+        <li class="list"><a href="#!" id="hotels">Restaurants</a></li>
+    </ul>
+    <!-- Weather parameters for serach location -->
+    <div class="row">
+        <div class="col s12 weather" id= "currentCityWeather">
+        </div>
+    </div>
+    <!-- Cards for search hotels & restaurants information and geolocation -->
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card blue darken-2">
+                <div class="card-content white-text">
+                    <span class="card-title titleInfo">Information about hotels and restaurants here</span>
+                    <div class="info">
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card blue darken-2">
+                <div class="card-content white-text">
+                    <span class="card-title mapLocation">Map information here</span>
+                </div>
+                <div id="map">
+                </div>    
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <!-- Footer with developer information -->
+    <nav class="nav-wrapper green lighten-1 footWrapper">
+        <div class="left">©copyright 2020 </div>
+         <ul class="links right contributors">
+            <li><a class="white-text" href="#!">Mety</a></li>
+            <li><a class="white-text" href="#!">Ben</a></li>
+            <li><a class="white-text" href="#!">John</a></li>
+            <li><a class="white-text" href="#!">Raufun</a></li>
+        </ul>
+    </nav>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

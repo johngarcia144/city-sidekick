@@ -1,6 +1,25 @@
-.section-search input {
-    padding: 5px;
-    font-size: 18px;
-    width: 90%;
-    border: #f4f4f4 9px solid
+body{
+    background-image: url(bground.png);
+}
+.dropdown-trigger{
+    margin-right: 50px;
+    font-weight: bold;
+    font-size: large;
+}
+.brand-logo{
+    margin-left: 40px;
+    font-weight: bolder;
+}
+.nav-extended {
+    background-image: url(denver_city.png);
+}
+.left{
+    margin-left: 100px;
+}
+.right {
+    margin-right: 100px;
+}
+
+.li {
+text-shadow: seagreen;
 }
