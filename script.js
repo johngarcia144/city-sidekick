@@ -1,6 +1,9 @@
-   
-$(".dropdown-trigger").dropdown();
-
+  
+  const elemDropdown= $(".dropdown-trigger").dropdown();
+  M.Dropdown.init(elemDropdown, {
+  coverTrigger:false
+});
+$(".sidenav").sidenav();
 // store the value of the input
 var city = $("#input-city").val();
 // store api key
@@ -39,20 +42,10 @@ $("#search-button").on("click", function() {
     console.log(Math.floor(tempF))
 
     console.log(response.main.humidity)
-
-    // console.log(response.wind.speed)
-
      getCurrentConditions(response);
-    // getCurrentForecast(response);
-    // makeList();
 
     })
   });
-
-//   function makeList() {
-//     let listItem = $("<li>").addClass("list-group-item").text(city);
-//     $(".list").append(listItem);
-//   }
 
   function getCurrentConditions (response) {
 
@@ -61,7 +54,6 @@ $("#search-button").on("click", function() {
     tempF = Math.floor(tempF);
 
     $('#currentCityWeather').empty();
-
     // get and set the content 
     const card = $("<div>").addClass("card");
     const cardBody = $("<div>").addClass("card-body");
@@ -69,7 +61,6 @@ $("#search-button").on("click", function() {
     const city = $("<h4>").addClass("center").text(response.name);
     const cityDate = $("<span>").addClass("card-title").text(" (" + moment().format('l') + ")");
     const tempHumid = $("<p>").addClass("card-text center current-temp").text("Temperature: " + tempF + " °F," + " Humidity: " + response.main.humidity + "%");
-    // const humidity = $("<span>").addClass("card-text current-humidity").text(" Humidity: " + response.main.humidity + "%");
     const image = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
 
     // add to page

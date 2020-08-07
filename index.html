@@ -4,25 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Application</title>
-    <!-- Compiled and minified CSS -->
+    <!-- materialize css, material icon, jquery ajax -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
-    <nav class="nav-extended #4a148c purple darken-4">
+    <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo"><i class="material-icons">emoji_transportation</i>Travel App</a>
-          <ul class="right ">
+            <a href="#!" class="brand-logo"><i class="material-icons" id="travel-icon">emoji_transportation</i>City Sidekick</a>
+            <a href="#" data-target="mabile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            
+            <ul class="right hide-on-med-and-down" id="nav-mobile">
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Point of Views<i class="material-icons right">arrow_drop_down</i></a></li>
-          </ul>
+                <a class="dropdown-trigger purple" data-target="dropdown-manu" href="#">
+                    point of view <i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </ul>
+            <!-- dropdown items -->
+            <ul id= "dropdown-manu" class="dropdown-content">
+                <li class="list"><a href="#!" id="restaurants">Hotels</a></li>
+                <li class="divider"></li>
+                <li class="list"><a href="#!" id="hotels">Restaurants</a></li>
+            </ul>
         </div>
         <div class="row formRow">
-            <div class="input-field col s4">
+            <div class="input-field col s9">
 
                 <form>
                     <div class="input-field col s9">
@@ -38,16 +47,12 @@
       </nav>
     
      <!-- dropdown menu for hotels and restaurants -->
-    <ul id="dropdown1" class="dropdown-content">
+    <ul id="mabile-navbar" class="sidenav">
         <li class="list"><a href="#!" id="restaurants">Hotels</a></li>
         <li class="divider"></li>
         <li class="list"><a href="#!" id="hotels">Restaurants</a></li>
     </ul>
-    <!-- Weather parameters for serach location -->
-    <div class="row">
-        <div class="col s12 weather" id= "currentCityWeather">
-        </div>
-    </div>
+    
     <!-- Cards for search hotels & restaurants information and geolocation -->
     <div class="row">
         <div class="col s12 m6">
@@ -71,15 +76,16 @@
     </div>
     <!-- Footer with author information -->
     <nav class="nav-wrapper green lighten-1 footWrapper">
-        <div class="left">©copyright 2020 </div>
+        <div class="center">©copyright 2020 
          <ul class="links right contributors">
             <li><a class="white-text" href="#!">Mety,</a></li>
             <li><a class="white-text" href="#!">Ben,</a></li>
             <li><a class="white-text" href="#!">John,</a></li>
             <li><a class="white-text" href="#!">Raufun</a></li>
         </ul>
+    </div>
     </nav>
-   
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script src="script.js"></script>
