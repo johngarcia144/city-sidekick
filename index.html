@@ -27,7 +27,7 @@
                 <form>
                     <div class="input-field col s9">
                       <input class="autocomplete" id="input-city" type="search" placeholder="Click here to enter your city"><i class="material-icons">close</i>
-                      <button id= "search-button" class="btn btn-primary" type="button" id="button-addon2">Click Search</button>
+                      <button id= "search-button" class="btn btn-primary" type="button" id="button-addon2" onclick='Search()'>Click Search</button>
                     </div>
                 </form>
             </div>
@@ -62,7 +62,7 @@
         <div class="col s12 m6">
             <div class="card blue darken-2">
                 <div class="card-content white-text">
-                    <span class="card-title mapLocation">Map info here</span>
+                    <span class="card-title mapLocation" style="position:relative;width:500px;height:400px;">Map info here</span>
                 </div>
                 <div id="map">
                 </div>    
@@ -91,19 +91,7 @@
   
   
   
-    <input id='searchTbx' type='text'/>
-    <input type='button'value='Search' onclick='Search()'/>
-    <br/>
-    <div id="myMap" style="position:relative;width:600px;height:400px;"></div>
-    <div id='output' style="margin-left:10px;"></div>
 
-
-
-
-    <br>
-    <div class="list"></div>
-    <br>
-    <div class="coordinates"></div>
 
 
 <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
@@ -113,7 +101,7 @@
 var map, searchManager;
 
 function GetMap() {
-    map = new Microsoft.Maps.Map('#myMap', {
+    map = new Microsoft.Maps.Map('.mapLocation', {
         credentials: 'AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ'
     });
 }
@@ -130,7 +118,7 @@ function Search() {
         map.entities.clear();
 
         //Get the users query and geocode it.
-        var query = document.getElementById('searchTbx').value;
+        var query = document.getElementById('input-city').value;
         geocodeQuery(query);
         geocodePins(objectArray);
     };
@@ -213,26 +201,18 @@ function geocodeQuery(query) {
                 map.setView({ bounds: bounds });
             }
         },
-        errorCallback: function (e) {
-            //If there is an error, alert the user about it.
-            alert("No results found.");
-        }
+        
     };
 
     //Make the geocode request.
     searchManager.geocode(searchRequest);
 }
-
-
-
-
-
-
-
+var listSelection = document.querySelector(".list").value;
+console.log(listSelection);
 
 testArray = [];
 //this ajax query will need to take in a restaurant/hotel, the users location(lat and long) and a slider for radius
-search = "restaurants" //example search input to test, will need to attach the dropdown menu to this
+search = "breweries" //example search input to test, will need to attach the dropdown menu to this
 geoLocation = "39.739235,-104.990250,5000" //example geo location for denver to test with a radius of 500...not sure of the measurement...
 bingKey = "AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ"
 const queryURL = "https://dev.virtualearth.net/REST/v1/LocalSearch/?query=" + search + "&userCircularMapView=" + geoLocation + "&key=" + bingKey
@@ -242,23 +222,20 @@ $.ajax({
     }).then(function(response) {
         console.log(response);
         for (var i=0; i < 10; i++) {
-        restaurantsObject = response.resourceSets[0].resources[i].name//this will display 10 restaurants
-        console.log(restaurantsObject);
+        locationsObject = response.resourceSets[0].resources[i].name//this will display 10 restaurants
+        console.log(locationsObject);
 
 
-        //testing coordinates log
-        console.log("Hello");
+        
+
         var obj = {latitude:response.resourceSets[0].resources[i].point.coordinates[0], longitude:response.resourceSets[0].resources[i].point.coordinates[1]};
-        var nameReataurant = response.resourceSets[0].resources[i].name
+        var nameRestaurant = response.resourceSets[0].resources[i].name;
         objectArray.push(obj);
-        console.log(response.resourceSets[0].resources[i].point.coordinates[0]);
-        console.log(response.resourceSets[0].resources[i].point.coordinates[1]);
-        //testing coordinates log
+        
         //make an array of objects that mimics r.results[i].location
 
-        testArray.push(JSON.stringify(restaurantsObject));//this will push each restaurant into an array so that we can display them
-        console.log(testArray);
-        $('.list').append(`<li id=${i}>${restaurantsObject}`);
+        testArray.push(JSON.stringify(locationsObject));//this will push each restaurant into an array so that we can display them
+        $('.titleInfo').append(`<li id=${i}>${locationsObject}`);
         };
     });
 
