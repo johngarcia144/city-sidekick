@@ -46,6 +46,8 @@ $("#search-button").on("click", function() {
     // getCurrentForecast(response);
     // makeList();
 
+    search(response.coord.lat, response.coord.lon,"restaurant", ".list")
+    search(response.coord.lat, response.coord.lon,"hotel", ".hotel")
     })
   });
 
@@ -80,5 +82,3 @@ $("#search-button").on("click", function() {
     $("#currentCityWeather").append(card)
    
   }
-// to get the map
-
