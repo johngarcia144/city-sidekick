@@ -140,14 +140,9 @@ function geocodeQuery(query) {
 
 
 
-
-
-
-
-
 testArray = [];
 //this ajax query will need to take in a restaurant/hotel, the users location(lat and long) and a slider for radius
-search = "restaurants" //example search input to test, will need to attach the dropdown menu to this
+search = "breweries" //example search input to test, will need to attach the dropdown menu to this
 geoLocation = "39.739235,-104.990250,5000" //example geo location for denver to test with a radius of 500...not sure of the measurement...
 bingKey = "AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ"
 const queryURL = "https://dev.virtualearth.net/REST/v1/LocalSearch/?query=" + search + "&userCircularMapView=" + geoLocation + "&key=" + bingKey
