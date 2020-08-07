@@ -1,0 +1,22 @@
+body{
+    background-image: url(bground.png);
+}
+.dropdown-trigger{
+    margin-right: 50px;
+    font-weight: bold;
+    font-size: large;
+}
+.brand-logo{
+    margin-left: 40px;
+    font-weight: bolder;
+}
+.nav-extended {
+    background-image: url(denver_city.png);
+}
+.left{
+    margin-left: 100px;
+}
+.right{
+    margin-right: 100px;
+}
+
