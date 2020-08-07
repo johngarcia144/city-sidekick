@@ -45,6 +45,10 @@ $("#search-button").on("click", function() {
      getCurrentConditions(response);
     // getCurrentForecast(response);
     // makeList();
+    var long = response.coord.lon
+    console.log(long);
+  var latt = response.coord.lat
+    console.log(latt)
 
     })
   });
