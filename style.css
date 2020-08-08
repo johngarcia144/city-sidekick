@@ -1,22 +1,28 @@
 body{
     background-image: url(bground.png);
 }
-.dropdown-trigger{
-    margin-right: 50px;
-    font-weight: bold;
-    font-size: large;
-}
 .brand-logo{
-    margin-left: 40px;
+    
     font-weight: bolder;
 }
 .nav-extended {
     background-image: url(denver_city.png);
 }
-.left{
-    margin-left: 100px;
+#travel-icon{
+    font-size: 50px;
 }
-.right{
-    margin-right: 100px;
+#travel-icon{
+    font-size: 40px;
+}
+.dropdown-content {
+    font-size: 14px !important;
+}
+#input-city{
+    margin-top: 50px;
 }
 
+.dropdown-trigger{
+    border-radius: 40%;
+    margin-top: 38px;
+    display: inline-block;
+}
