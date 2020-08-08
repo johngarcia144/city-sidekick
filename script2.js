@@ -1,4 +1,8 @@
-$(".dropdown-trigger").dropdown();
+const elemDropdown= $(".dropdown-trigger").dropdown();
+  M.Dropdown.init(elemDropdown, {
+  coverTrigger:false
+});
+$(".sidenav").sidenav();
 
 // store the value of the input
 var city = $("#input-city").val();
