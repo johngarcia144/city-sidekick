@@ -144,7 +144,7 @@ function geocodePins(arr) {
     //Create a pushpin for each result.
     console.log("2", arr[i]);
     pin = new Microsoft.Maps.Pushpin(arr[i], {
-      text: i + "",
+      text: i + 1 + "",
     });
     pins.push(pin);
     locs.push(arr[i]);
