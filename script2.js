@@ -133,7 +133,8 @@ function Search(city) {
     //Get the users query and geocode it.
     geocodeQuery(city);
     console.log("MAP", map, city);
-    if(lat && lng) getMarkers(search, lat, lng).then(() => geocodePins(objectArray));
+    if(lat && lng) getMarkers(search, lat, lng)
+
   }
 }
 
@@ -265,12 +266,13 @@ function getMarkers(search, lat, lng) {
       $(".titleInfo").append(`<li id=${i}>${locationsObject}`);
     }
   });
+
 }
 
 $(".list").click(function () {
   search = $(this).html();
-  
-    if(lat && lng) getMarkers(search, lat, lng);
+  map.entities.clear();
+  if(lat && lng) getMarkers(search, lat, lng).then(() => geocodePins(objectArray));(search, lat, lng);
 });
 
 // may not need this 2nd ajax call...
