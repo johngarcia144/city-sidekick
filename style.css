@@ -2,7 +2,6 @@ body{
     background-image: url(bground.png);
 }
 .brand-logo{
-    
     font-weight: bolder;
 }
 .nav-extended {
@@ -20,7 +19,6 @@ body{
 #input-city{
     margin-top: 50px;
 }
-
 .dropdown-trigger{
     border-radius: 40%;
     margin-top: 38px;
