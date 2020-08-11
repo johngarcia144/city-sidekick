@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="Assets/style.css">
 </head>
+
 <body onload="GetMap();">
     <nav class="nav-extended">
         <div class="nav-wrapper">
-            <a href="./index.html" class="brand-logo"><i class="material-icons">emoji_transportation</i>City Sidekick</a>
-            <a href="#" data-target="mabile-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="./index.html" class="brand-logo"><i class="material-icons">emoji_transportation</i>City
+                Sidekick</a>
+            <a href="./index.html" data-target="mabile-navbar" class="sidenav-trigger"><i
+                    class="material-icons">menu</i></a>
             <!-- dropdown items -->
-            <ul id= "dropdown-manu" class="dropdown-content">
+            <ul id="dropdown-manu" class="dropdown-content">
                 <li><a class="list" href="#!" id="restaurants selection">Hotels</a></li>
                 <li class="divider"></li>
                 <li><a class="list" href="#!" id="hotels selection">Restaurants</a></li>
@@ -30,36 +34,51 @@
             <form class="input-field col s12">
                 <div class="row">
                     <div class="input-field col s7">
-                      <input class="autocomplete" id="input-city" type="search" placeholder="Click here to enter your city">
-                      <button id= "search-button" class="btn btn-primary" type="button" id="button-addon2" onclick='Search()'>Click Search</button>
+                        <input class="autocomplete" id="input-city" type="search"
+                            placeholder="Click here to enter your city">
+                        <button id="search-button" class="btn btn-primary" type="button" id="button-addon2"
+                            onclick='Search()'>Click Search</button>
                     </div>
                     <div class="input-field col s2">
                         <ul class="center hide-on-med-and-down" id="nav-mobile">
                             <!-- Dropdown Trigger -->
-                                <a class="dropdown-trigger purple" data-target="dropdown-manu" href="#">
-                                    Where To? <i class="material-icons right">arrow_drop_down</i>
-                                </a>
+                            <a class="dropdown-trigger purple" data-target="dropdown-manu" href="#">
+                                Where To? <i class="material-icons right">arrow_drop_down</i>
+                            </a>
                         </ul>
                     </div>
                 </div>
             </form>
         </div>
     </nav>
-    
-     <!-- dropdown menu for hotels and restaurants -->
-     <ul id="mabile-navbar" class="sidenav">
+
+    <!-- dropdown menu for hotels and restaurants -->
+    <ul id="mabile-navbar" class="sidenav">
         <li><a class="list" href="#!" id="restaurants selection">Hotels</a></li>
         <li class="divider"></li>
         <li><a class="list" href="#!" id="hotels selection">Restaurants</a></li>
         <li class="divider"></li>
         <li><a class="list" href="#!" id="breweries selection">Breweries</a></li>
     </ul>
-    <!-- Weather parameters for serach location -->
-    <div class="row">
-        <div class="col s12" id= "currentCityWeather">
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 class="modal-header center">Welcome to City Sidekick</h4>
+            <p>Enter city name into the search field to start exploring. Click on dropdown Menu to see the top 10
+                hotels, restaurants and breweries for your destination.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat white-text blue darken-2 ">Click me to
+                open City Sidekick </a>
         </div>
     </div>
-    <!-- Cards for search hotels & restaurants information and geolocation -->
+    <!-- Weather parameters for serach location -->
+    <div class="row">
+        <div class="col s12" id="currentCityWeather">
+        </div>
+    </div>
+    <!-- Cards for search hotels, restaurants, and breweries information and geolocation -->
     <div class="row">
         <div class="col s12 m6">
             <div class="card blue darken-2">
@@ -67,37 +86,40 @@
                     <ol class="card-title titleInfo"></ol>
                     <div class="info">
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
         <div class="col s12 m6">
             <div class="card blue darken-2">
                 <div class="card-content white-text">
-                    <span class="card-title mapLocation" style="position:relative;width:500px;height:400px;">Map info here</span>
+                    <span class="card-title mapLocation"></span>
                 </div>
                 <div id="map">
-                </div>    
+                </div>
             </div>
         </div>
     </div>
     <!-- Footer with author information -->
     <nav class="nav-wrapper green lighten-1 footWrapper">
         <div class="left">©copyright 2020 </div>
-         <ul class="links right contributors">
+        <ul class="links right contributors">
             <li><a class="white-text" href="https://metasabeya.github.io/portfolio1/">Mety,</a></li>
             <li><a class="white-text" href="https://bensgar92.github.io/Week-2-HW/">Ben,</a></li>
             <li><a class="white-text" href="https://johngarcia144.github.io/homework-week-2/index.html">John,</a></li>
             <li><a class="white-text" href="https://raufun05.github.io/Responsive_Portfolio/">Raufun</a></li>
         </ul>
     </nav>
-   
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script src="Assets/script.js"></script>
 
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap' async defer></script>
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ' async defer></script>
+    <script type='text/javascript'
+        src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ'
+        async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     
+
 </body>
+
 </html>

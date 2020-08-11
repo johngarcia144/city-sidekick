@@ -1,8 +1,13 @@
-const elemDropdown= $(".dropdown-trigger").dropdown();
-  M.Dropdown.init(elemDropdown, {
-  coverTrigger:false
+//identified the dropdown button
+const elemDropdown = $(".dropdown-trigger").dropdown();
+M.Dropdown.init(elemDropdown, {
+  coverTrigger: false
 });
+//identified the side navbar
 $(".sidenav").sidenav();
+// Initial modal open 
+$('.modal').modal();
+$('.modal').modal('open');
 
 // store the value of the input
 var city = $("#input-city").val();
@@ -43,27 +48,19 @@ $("#search-button").on("click", function () {
 
     console.log(response.main.humidity);
 
-    // console.log(response.wind.speed)
-
     getCurrentConditions(response);
-    // getCurrentForecast(response);
-    // makeList();
     var long = response.coord.lon;
     console.log(long);
-      var latt = response.coord.lat;
-      
-      lat = latt
+    var latt = response.coord.lat;
 
-      lng = long
+    lat = latt
+
+    lng = long
     console.log(latt);
     Search(city);
   });
 });
 
-//   function makeList() {
-//     let listItem = $("<li>").addClass("list-group-item").text(city);
-//     $(".list").append(listItem);
-//   }
 
 function getCurrentConditions(response) {
   // get the temperature and convert to fahrenheit
@@ -86,13 +83,12 @@ function getCurrentConditions(response) {
     .addClass("card-text center current-temp")
     .text(
       "Temperature: " +
-        tempF +
-        " °F," +
-        " Humidity: " +
-        response.main.humidity +
-        "%"
+      tempF +
+      " °F," +
+      " Humidity: " +
+      response.main.humidity +
+      "%"
     );
-  // const humidity = $("<span>").addClass("card-text current-humidity").text(" Humidity: " + response.main.humidity + "%");
   const image = $("<img>").attr(
     "src",
     "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"
@@ -133,7 +129,8 @@ function Search(city) {
     //Get the users query and geocode it.
     geocodeQuery(city);
     console.log("MAP", map, city);
-    if(lat && lng) getMarkers(search, lat, lng).then(() => geocodePins(objectArray));
+    if (lat && lng) getMarkers(search, lat, lng)
+
   }
 }
 
@@ -195,9 +192,6 @@ function geocodeQuery(query) {
 
         //Add the pins to the map
         map.entities.push(pins);
-
-        //Display list of results
-        // document.getElementById('output').innerHTML = output;
 
         //Determine a bounding box to best view the results.
         var bounds;
@@ -265,25 +259,11 @@ function getMarkers(search, lat, lng) {
       $(".titleInfo").append(`<li id=${i}>${locationsObject}`);
     }
   });
+
 }
 
 $(".list").click(function () {
   search = $(this).html();
-  
-    if(lat && lng) getMarkers(search, lat, lng);
+  map.entities.clear();
+  if (lat && lng) getMarkers(search, lat, lng).then(() => geocodePins(objectArray)); (search, lat, lng);
 });
-
-// may not need this 2nd ajax call...
-// this url link will take an address using zipcode/city/street and show the coordinates
-// const queryURL2 =
-//   "http://dev.virtualearth.net/REST/v1/Locations/US/{adminDistrict}/80224/Denver/1200SOneidaSt?&maxResults=1&key=AlH3Jgw0ONrM0Etbku31o8qqPXlS-bpS_vOXhaKx5Z_bNblaBPSKcvdwrC1TRsVZ";
-// $.ajax({
-//   url: queryURL2,
-//   method: "GET",
-// }).then(function (response) {
-//   console.log(response);
-//   coordinates =
-//     response.resourceSets[0].resources[0].geocodePoints[0].coordinates;
-//   console.log(coordinates);
-//   $(".coordinates").append("<ul>").text(coordinates);
-// });

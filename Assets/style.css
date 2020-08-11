@@ -24,3 +24,14 @@ body{
     margin-top: 38px;
     display: inline-block;
 }
+.mapLocation{
+    position:relative;
+    height:400px;
+}
+.titleInfo{
+    position:relative;
+    height:377px;
+}
+.nav-extended{
+    border: 5px solid lightseagreen;
+}
