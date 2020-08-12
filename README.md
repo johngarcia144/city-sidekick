@@ -61,3 +61,8 @@ Sell app to Microsoft
   * A demonstration of its functionality
   * Directions for future development
   * Links to the deployed application and the GitHub repository
+
+  links
+   https://johngarcia144.github.io/city-sidekick/
+    https://github.com/johngarcia144/city-sidekick.git
+
