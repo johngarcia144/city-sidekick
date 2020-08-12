@@ -63,9 +63,9 @@ Sell app to Microsoft
   * Links to the deployed application and the GitHub repository
 
   links
+  
    https://johngarcia144.github.io/city-sidekick/
    
    
-   
-    https://github.com/johngarcia144/city-sidekick.git
+   https://github.com/johngarcia144/city-sidekick.git
 
