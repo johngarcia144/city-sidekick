@@ -129,7 +129,7 @@ function Search(city) {
     //Get the users query and geocode it.
     geocodeQuery(city);
     console.log("MAP", map, city);
-    if (lat && lng) getMarkers(search, lat, lng)
+    if(lat && lng) getMarkers(search, lat, lng)
 
   }
 }
@@ -265,5 +265,7 @@ function getMarkers(search, lat, lng) {
 $(".list").click(function () {
   search = $(this).html();
   map.entities.clear();
+
   if (lat && lng) getMarkers(search, lat, lng).then(() => geocodePins(objectArray)); (search, lat, lng);
 });
+
